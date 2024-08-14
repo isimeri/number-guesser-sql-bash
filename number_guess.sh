@@ -72,3 +72,17 @@ function loop()
     fi
   fi
 }
+
+function start()
+{
+  # generate secret number
+  SECRET_NUMBER=$((1 + $RANDOM % 1000))
+  echo "Guess the secret number between 1 and 1000:"
+  read GUESS
+  # initialize guess count
+  NUMBER_OF_GUESSES=0
+  loop
+}
+
+greeting
+start
