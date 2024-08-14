@@ -5,16 +5,9 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 function greeting(){
   echo "Enter your username:"
   read USERNAME
-  # while [[ ${#USERNAME} -gt 22 || ${#USERNAME} -eq 0 ]]
-  # do
-  #   # keep asking for input if user provides empty string or usernames that are too long
-  #   echo "The username must not be longer than 22 characters and it can't be empty. Please enter a valid username:"
-  #   read USERNAME
-  # done
 
   # check if user already exists
   USERNAME_CHECK=$($PSQL "select username from users where username='$USERNAME'")
-  # USER_ID=$($PSQL "select user_id from users where username='$USERNAME'")
 
   if [[ -z $USERNAME_CHECK ]]
   then
@@ -41,12 +34,6 @@ function loop()
     read GUESS
     loop
   else
-    # if [[ $GUESS -lt 1 || $GUESS -gt 1000 ]]
-    # then
-    #   # guess is out of bounds
-    #   echo "The guess must be between 1 and 1000."
-    #   read GUESS
-    #   loop
     if [[ $GUESS -lt $SECRET_NUMBER ]]
     then
       # try higher
